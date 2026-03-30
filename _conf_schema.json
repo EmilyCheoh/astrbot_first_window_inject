@@ -1,0 +1,31 @@
+{
+    "initial_context_count": {
+        "description": "初始 context 条数",
+        "hint": "新窗口第一条消息时 contexts 中已有的条数。没有预设对话时填 0；有一组预设对话（user+assistant）时填 2。当实际 contexts 条数 <= 此值时判定为首轮消息并注入。",
+        "type": "int",
+        "default": 0
+    },
+    "injection_position": {
+        "description": "注入位置",
+        "hint": "内容注入到 LLM 请求的位置。user_message_before: 用户消息前；user_message_after: 用户消息后；system_prompt: 追加到系统提示词。",
+        "type": "string",
+        "default": "user_message_after",
+        "options": [
+            "user_message_before",
+            "user_message_after",
+            "system_prompt"
+        ]
+    },
+    "tag_name": {
+        "description": "标签名称",
+        "hint": "XML 标签名称，例如 First-Window-Context。不需要包含尖括号。仅允许字母、数字、连字符、下划线。",
+        "type": "string",
+        "default": "First-Window-Context"
+    },
+    "content": {
+        "description": "注入内容",
+        "hint": "首轮消息时注入的内容。支持换行。",
+        "type": "string",
+        "default": ""
+    }
+}
