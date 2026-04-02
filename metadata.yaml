@@ -1,5 +1,5 @@
 name: astrbot_first_window_inject
 description: 新窗口首轮注入插件 - 仅在新对话的第一条消息中注入指定内容
-version: 1.0.0
+version: 1.1.0
 author: Felis Abyssalis
 repo: "https://github.com/EmilyCheoh/astrbot_first_window_inject"
