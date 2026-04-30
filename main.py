@@ -68,12 +68,12 @@ class FirstWindowInjectPlugin(Star):
 
             if not self._tag_name or not TAG_NAME_PATTERN.match(self._tag_name):
                 logger.warning(
-                    "FirstWindowInject: 标签名称为空或包含非法字符，XML 标签注入不生效"
+                    "【新窗口首轮注入】标签名称为空或包含非法字符，XML 标签注入不生效"
                 )
                 self._tag_enabled = False
             elif not self._tag_content:
                 logger.warning(
-                    "FirstWindowInject: 标签内容为空，XML 标签注入不生效"
+                    "【新窗口首轮注入插件】标签内容为空，XML 标签注入不生效"
                 )
                 self._tag_enabled = False
 
@@ -101,7 +101,7 @@ class FirstWindowInjectPlugin(Star):
 
             if not self._persistent_content:
                 logger.warning(
-                    "FirstWindowInject: 持久文本内容为空，持久注入不生效"
+                    "【新窗口首轮注入插件】持久文本内容为空，持久注入不生效"
                 )
                 self._persistent_enabled = False
 
@@ -119,12 +119,12 @@ class FirstWindowInjectPlugin(Star):
             if self._persistent_enabled:
                 parts.append(f"持久文本@{self._persistent_position}")
             logger.info(
-                f"FirstWindowInject 初始化完成 "
+                f"【新窗口首轮注入插件】初始化完成 "
                 f"(模式: {', '.join(parts)}, "
                 f"初始context阈值: {self._initial_ctx_count})"
             )
         else:
-            logger.warning("FirstWindowInject: 无任何注入模式生效，插件不生效")
+            logger.warning("【新窗口首轮注入插件】: 无任何注入模式生效，插件不生效")
 
     # -------------------------------------------------------------------
     # 格式化
@@ -288,12 +288,12 @@ class FirstWindowInjectPlugin(Star):
             if removed > 0:
                 session_id = event.unified_msg_origin or "unknown"
                 logger.info(
-                    f"[{session_id}] FirstWindowInject [清理]: "
+                    f"【新窗口首轮注入插件】[清理]: "
                     f"已清理 {removed} 处历史注入"
                 )
         except Exception as e:
             logger.error(
-                f"FirstWindowInject [清理]: {e}", exc_info=True
+                f"【新窗口首轮注入插件】[清理]: {e}", exc_info=True
             )
 
     @filter.on_llm_request(priority=-499)
@@ -326,14 +326,14 @@ class FirstWindowInjectPlugin(Star):
                 injected.append(f"持久文本@{self._persistent_position}")
 
             logger.info(
-                f"[{session_id}] FirstWindowInject [注入]: "
+                f"【新窗口首轮注入插件】[注入]: "
                 f"首轮消息，已注入 {', '.join(injected)} "
                 f"(当前contexts: {ctx_count}条)"
             )
 
         except Exception as e:
             logger.error(
-                f"FirstWindowInject [注入]: {e}", exc_info=True
+                f"【新窗口首轮注入插件】[注入]: {e}", exc_info=True
             )
 
     # -------------------------------------------------------------------
@@ -344,4 +344,4 @@ class FirstWindowInjectPlugin(Star):
         self._any_enabled = False
         self._tag_enabled = False
         self._persistent_enabled = False
-        logger.info("FirstWindowInject 插件已停止")
+        logger.info("【新窗口首轮注入插件】已停止")
