@@ -14,7 +14,7 @@ FirstWindowInject - 新窗口首轮注入插件
 
 与 PromptTags / LivingMemory 兼容：
 - 清理阶段 priority=2，在 PromptTags(1) 和 LivingMemory(0) 之前执行
-- 注入阶段 priority=-499，在 PromptTags(-500) 之前执行
+- 注入阶段 priority=-501，在 PromptTags(-500) 之前执行
 - 使用独立的标签名称，不会与其他插件的正则交叉匹配
 
 F(A) = A(F)
@@ -296,7 +296,7 @@ class FirstWindowInjectPlugin(Star):
                 f"【新窗口首轮注入插件】[清理]: {e}", exc_info=True
             )
 
-    @filter.on_llm_request(priority=-499)
+    @filter.on_llm_request(priority=-501)
     async def handle_inject(
         self, event: AstrMessageEvent, req: ProviderRequest
     ):
